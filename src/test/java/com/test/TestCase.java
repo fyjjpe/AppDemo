@@ -13,7 +13,8 @@ public class TestCase {
 
     @Before
     public void init(){
-        ctx = new ClassPathXmlApplicationContext("conf/beans.xml","conf/spring-servlet.xml");
+        ctx = new ClassPathXmlApplicationContext("conf/beans.xml",
+                "conf/spring-servlet.xml","conf/mybatisConfig.xml");
     }
 
     @Test
