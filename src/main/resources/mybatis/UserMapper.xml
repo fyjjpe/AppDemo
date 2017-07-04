@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.UserDao">
+
+    <resultMap type="User" id="standardUserMap">
+		<id property="id" column="id" javaType="String" jdbcType="VARCHAR"/>
+      	<result property="name" column="name" javaType="String" jdbcType="VARCHAR"/>
+      	<result property="age" column="age" javaType="Integer" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<sql id="complete_columns">
+		id, name, age
+	</sql>
+	
+	<select id="cleanTable" >
+		truncate table f_user;
+	</select>
+
+
+</mapper>
