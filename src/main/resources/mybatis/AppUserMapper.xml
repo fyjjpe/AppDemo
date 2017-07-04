@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.AppUserDao">
+
+    <resultMap type="User" id="standardAppUserMap">
+        <id property="id" column="id" javaType="String" jdbcType="VARCHAR"/>
+        <result property="tpadId" column="tpad_id" javaType="String" jdbcType="VARCHAR"/>
+        <result property="loginName" column="login_name" javaType="String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="appuser_columns">
+		id, tpad_id, login_name
+	</sql>
+
+    <select id="findAllUser" resultMap="standardAppUserMap">
+		SELECT DISTINCT id, tpad_id, login_name FROM uic.f_app_user
+	</select>
+
+
+</mapper>
