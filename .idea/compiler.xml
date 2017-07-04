@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="AppDemo" />
         <module name="QuartzDemo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="AppDemo" target="1.7" />
       <module name="QuartzDemo" target="1.7" />
     </bytecodeTargetLevel>
   </component>
