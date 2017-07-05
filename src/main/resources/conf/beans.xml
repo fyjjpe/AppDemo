@@ -64,6 +64,32 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <!--<context:property-placeholder-->
+            <!--ignore-resource-not-found="true"-->
+            <!--location="classpath*:/setup.properties, classpath*:/setup.demo.properties"/>-->
+
+    <!--<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"-->
+          <!--init-method="init" destroy-method="close">-->
+        <!--<property name="url" value="${jdbc.url}"/>-->
+        <!--<property name="username" value="${jdbc.username}"/>-->
+        <!--<property name="password" value="${jdbc.password}"/>-->
+        <!--<property name="initialSize" value="${jdbc.initialPoolSize}"/>-->
+        <!--<property name="minIdle" value="${jdbc.miniPoolSize}"/>-->
+        <!--<property name="maxActive" value="${jdbc.maxPoolSize}"/>-->
+        <!--<property name="maxWait" value="${jdbc.maxIdleTime}"/>-->
+        <!--<property name="timeBetweenEvictionRunsMillis" value="60000"/>-->
+        <!--<property name="minEvictableIdleTimeMillis" value="300000"/>-->
+        <!--<property name="validationQuery" value="SELECT 'x'"/>-->
+        <!--<property name="testWhileIdle" value="true"/>-->
+        <!--<property name="testOnBorrow" value="false"/>-->
+        <!--<property name="testOnReturn" value="false"/>-->
+        <!--<property name="poolPreparedStatements" value="false"/>-->
+        <!--<property name="filters" value="stat"/>-->
+    <!--</bean>-->
+
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
     <!-- propagation 默认为requeired isolation 默认为default 所以下面这两项 默认的话可以不配 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
@@ -82,7 +108,31 @@
         </tx:attributes>
     </tx:advice>
 
-    <beans profile="backup">
+    <!--<beans profile="backup">-->
+        <!--<context:property-placeholder-->
+                <!--ignore-resource-not-found="true"-->
+                <!--location="classpath*:/setup.properties, classpath*:/setup.demo.properties"/>-->
+        <!--<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"-->
+              <!--init-method="init" destroy-method="close">-->
+            <!--<property name="url" value="${jdbc.url}"/>-->
+            <!--<property name="username" value="${jdbc.username}"/>-->
+            <!--<property name="password" value="${jdbc.password}"/>-->
+            <!--<property name="initialSize" value="${jdbc.minsize}"/>-->
+            <!--<property name="minIdle" value="${jdbc.minIdle}"/>-->
+            <!--<property name="maxActive" value="${jdbc.maxsize}"/>-->
+            <!--<property name="maxWait" value="60000"/>-->
+            <!--<property name="timeBetweenEvictionRunsMillis" value="60000"/>-->
+            <!--<property name="minEvictableIdleTimeMillis" value="300000"/>-->
+            <!--<property name="validationQuery" value="SELECT 'x'"/>-->
+            <!--<property name="testWhileIdle" value="true"/>-->
+            <!--<property name="testOnBorrow" value="false"/>-->
+            <!--<property name="testOnReturn" value="false"/>-->
+            <!--<property name="poolPreparedStatements" value="false"/>-->
+            <!--<property name="filters" value="stat"/>-->
+        <!--</bean>-->
+    <!--</beans>-->
+
+    <!--<beans profile="demo">-->
         <context:property-placeholder
                 ignore-resource-not-found="true"
                 location="classpath*:/setup.properties, classpath*:/setup.demo.properties"/>
@@ -104,79 +154,55 @@
             <property name="poolPreparedStatements" value="false"/>
             <property name="filters" value="stat"/>
         </bean>
-    </beans>
+    <!--</beans>-->
 
-    <beans profile="demo">
-        <context:property-placeholder
-                ignore-resource-not-found="true"
-                location="classpath*:/setup.properties, classpath*:/setup.demo.properties"/>
-        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-              init-method="init" destroy-method="close">
-            <property name="url" value="${jdbc.url}"/>
-            <property name="username" value="${jdbc.username}"/>
-            <property name="password" value="${jdbc.password}"/>
-            <property name="initialSize" value="${jdbc.minsize}"/>
-            <property name="minIdle" value="${jdbc.minIdle}"/>
-            <property name="maxActive" value="${jdbc.maxsize}"/>
-            <property name="maxWait" value="60000"/>
-            <property name="timeBetweenEvictionRunsMillis" value="60000"/>
-            <property name="minEvictableIdleTimeMillis" value="300000"/>
-            <property name="validationQuery" value="SELECT 'x'"/>
-            <property name="testWhileIdle" value="true"/>
-            <property name="testOnBorrow" value="false"/>
-            <property name="testOnReturn" value="false"/>
-            <property name="poolPreparedStatements" value="false"/>
-            <property name="filters" value="stat"/>
-        </bean>
-    </beans>
+    <!--<beans profile="development">-->
+        <!--<context:property-placeholder-->
+                <!--ignore-resource-not-found="true"-->
+                <!--location="classpath*:/setup.properties, classpath*:/setup.development.properties"/>-->
+        <!--<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"-->
+              <!--init-method="init" destroy-method="close">-->
+            <!--<property name="url" value="${jdbc.url}"/>-->
+            <!--<property name="username" value="${jdbc.username}"/>-->
+            <!--<property name="password" value="${jdbc.password}"/>-->
+            <!--<property name="initialSize" value="${jdbc.minsize}"/>-->
+            <!--<property name="minIdle" value="${jdbc.minIdle}"/>-->
+            <!--<property name="maxActive" value="${jdbc.maxsize}"/>-->
+            <!--<property name="maxWait" value="60000"/>-->
+            <!--<property name="timeBetweenEvictionRunsMillis" value="60000"/>-->
+            <!--<property name="minEvictableIdleTimeMillis" value="300000"/>-->
+            <!--<property name="validationQuery" value="SELECT 'x'"/>-->
+            <!--<property name="testWhileIdle" value="true"/>-->
+            <!--<property name="testOnBorrow" value="false"/>-->
+            <!--<property name="testOnReturn" value="false"/>-->
+            <!--<property name="poolPreparedStatements" value="false"/>-->
+            <!--<property name="filters" value="stat"/>-->
+        <!--</bean>-->
+    <!--</beans>-->
 
-    <beans profile="development">
-        <context:property-placeholder
-                ignore-resource-not-found="true"
-                location="classpath*:/setup.properties, classpath*:/setup.development.properties"/>
-        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-              init-method="init" destroy-method="close">
-            <property name="url" value="${jdbc.url}"/>
-            <property name="username" value="${jdbc.username}"/>
-            <property name="password" value="${jdbc.password}"/>
-            <property name="initialSize" value="${jdbc.minsize}"/>
-            <property name="minIdle" value="${jdbc.minIdle}"/>
-            <property name="maxActive" value="${jdbc.maxsize}"/>
-            <property name="maxWait" value="60000"/>
-            <property name="timeBetweenEvictionRunsMillis" value="60000"/>
-            <property name="minEvictableIdleTimeMillis" value="300000"/>
-            <property name="validationQuery" value="SELECT 'x'"/>
-            <property name="testWhileIdle" value="true"/>
-            <property name="testOnBorrow" value="false"/>
-            <property name="testOnReturn" value="false"/>
-            <property name="poolPreparedStatements" value="false"/>
-            <property name="filters" value="stat"/>
-        </bean>
-    </beans>
-
-    <beans profile="production">
-        <context:property-placeholder
-                ignore-resource-not-found="true"
-                location="classpath*:/setup.properties, classpath*:/setup.production.properties"/>
-        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-              init-method="init" destroy-method="close">
-            <property name="url" value="${jdbc.url}"/>
-            <property name="username" value="${jdbc.username}"/>
-            <property name="password" value="${jdbc.password}"/>
-            <property name="initialSize" value="${jdbc.minsize}"/>
-            <property name="minIdle" value="${jdbc.minIdle}"/>
-            <property name="maxActive" value="${jdbc.maxsize}"/>
-            <property name="maxWait" value="60000"/>
-            <property name="timeBetweenEvictionRunsMillis" value="60000"/>
-            <property name="minEvictableIdleTimeMillis" value="300000"/>
-            <property name="validationQuery" value="SELECT 'x'"/>
-            <property name="testWhileIdle" value="true"/>
-            <property name="testOnBorrow" value="false"/>
-            <property name="testOnReturn" value="false"/>
-            <property name="poolPreparedStatements" value="false"/>
-            <property name="filters" value="stat"/>
-        </bean>
-    </beans>
+    <!--<beans profile="production">-->
+        <!--<context:property-placeholder-->
+                <!--ignore-resource-not-found="true"-->
+                <!--location="classpath*:/setup.properties, classpath*:/setup.production.properties"/>-->
+        <!--<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"-->
+              <!--init-method="init" destroy-method="close">-->
+            <!--<property name="url" value="${jdbc.url}"/>-->
+            <!--<property name="username" value="${jdbc.username}"/>-->
+            <!--<property name="password" value="${jdbc.password}"/>-->
+            <!--<property name="initialSize" value="${jdbc.minsize}"/>-->
+            <!--<property name="minIdle" value="${jdbc.minIdle}"/>-->
+            <!--<property name="maxActive" value="${jdbc.maxsize}"/>-->
+            <!--<property name="maxWait" value="60000"/>-->
+            <!--<property name="timeBetweenEvictionRunsMillis" value="60000"/>-->
+            <!--<property name="minEvictableIdleTimeMillis" value="300000"/>-->
+            <!--<property name="validationQuery" value="SELECT 'x'"/>-->
+            <!--<property name="testWhileIdle" value="true"/>-->
+            <!--<property name="testOnBorrow" value="false"/>-->
+            <!--<property name="testOnReturn" value="false"/>-->
+            <!--<property name="poolPreparedStatements" value="false"/>-->
+            <!--<property name="filters" value="stat"/>-->
+        <!--</bean>-->
+    <!--</beans>-->
 
 </beans>
 

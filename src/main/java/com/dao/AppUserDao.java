@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.model.AppUser;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

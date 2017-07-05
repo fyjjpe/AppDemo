@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.AppUserDao">
 
-    <resultMap type="User" id="standardAppUserMap">
+    <resultMap type="AppUser" id="standardAppUserMap">
         <id property="id" column="id" javaType="String" jdbcType="VARCHAR"/>
         <result property="tpadId" column="tpad_id" javaType="String" jdbcType="VARCHAR"/>
         <result property="loginName" column="login_name" javaType="String" jdbcType="VARCHAR"/>
@@ -14,7 +14,7 @@
 	</sql>
 
     <select id="findAllUser" resultMap="standardAppUserMap">
-		SELECT DISTINCT id, tpad_id, login_name FROM uic.f_app_user
+		SELECT DISTINCT id, tpad_id, login_name FROM uic.f_app_user limit 1000
 	</select>
 
 
